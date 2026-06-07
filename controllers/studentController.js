@@ -18,14 +18,17 @@ function findStudentById(id) {
     );
 }
 
+// Menampilkan seluruh mahasiswa
 exports.getAllStudents = (req, res) => {
     res.render("index", { students });
 };
 
+// Menampilkan form tambah mahasiswa
 exports.showAddForm = (req, res) => {
     res.render("add");
 };
 
+// Menambahkan mahasiswa baru
 exports.addStudent = (req, res) => {
     // Code Smell 1: Poor Naming
     const studentName = req.body.name;
@@ -46,6 +49,7 @@ exports.addStudent = (req, res) => {
     res.redirect("/");
 };
 
+// Menampilkan form edit mahasiswa
 exports.showEditForm = (req, res) => {
 
     const student = findStudentById(
@@ -55,6 +59,7 @@ exports.showEditForm = (req, res) => {
     res.render("edit", { student });
 };
 
+// Mengubah data mahasiswa
 exports.updateStudent = (req, res) => {
 
     const student = findStudentById(
@@ -69,6 +74,7 @@ exports.updateStudent = (req, res) => {
     res.redirect("/");
 };
 
+// Menghapus mahasiswa
 exports.deleteStudent = (req, res) => {
     students = students.filter(
         s => s.id != req.params.id
