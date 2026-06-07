@@ -18,23 +18,23 @@ exports.showAddForm = (req, res) => {
 
 exports.addStudent = (req, res) => {
     // Code Smell 1: Poor Naming
-    let n = req.body.name;
-    let m = req.body.major;
+    const studentName = req.body.name;
+    const studentMajor = req.body.major;
 
     // Code Smell 2: Duplicate Validation
-    if (n == "") {
+    if (studentName === "") {
         return res.send("Nama kosong");
     }
 
-    if (m == "") {
+    if (studentMajor === "") {
         return res.send("Jurusan kosong");
     }
 
     // Code Smell 3: Long Method
     students.push({
         id: nextId++,
-        name: n,
-        major: m
+        name: studentName,
+        major: studentMajor
     });
 
     res.redirect("/");
