@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Daftar Mahasiswa</title>
+</head>
+
+<body>
+
+    <h1>Daftar Mahasiswa</h1>
+
+    <a href="/add">Tambah Mahasiswa</a>
+
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Nama</th>
+            <th>Jurusan</th>
+            <th>Aksi</th>
+        </tr>
+
+        <% students.forEach(student=> { %>
+            <tr>
+                <td>
+                    <%= student.id %>
+                </td>
+                <td>
+                    <%= student.name %>
+                </td>
+                <td>
+                    <%= student.major %>
+                </td>
+                <td>
+                    <a href="/edit/<%= student.id %>">Edit</a>
+                    <a href="/delete/<%= student.id %>">Hapus</a>
+                </td>
+            </tr>
+            <% }) %>
+
+    </table>
+
+</body>
+
+</html>
