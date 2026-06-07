@@ -17,9 +17,11 @@ exports.showAddForm = (req, res) => {
 };
 
 exports.addStudent = (req, res) => {
+    // Code Smell 1: Poor Naming
     let n = req.body.name;
     let m = req.body.major;
 
+    // Code Smell 2: Duplicate Validation
     if (n == "") {
         return res.send("Nama kosong");
     }
@@ -28,6 +30,7 @@ exports.addStudent = (req, res) => {
         return res.send("Jurusan kosong");
     }
 
+    // Code Smell 3: Long Method
     students.push({
         id: nextId++,
         name: n,
