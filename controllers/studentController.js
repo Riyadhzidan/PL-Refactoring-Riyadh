@@ -8,6 +8,10 @@ let students = [
 
 let nextId = 2;
 
+function validateStudent(name, major) {
+    return name && major;
+}
+
 exports.getAllStudents = (req, res) => {
     res.render("index", { students });
 };
@@ -22,12 +26,8 @@ exports.addStudent = (req, res) => {
     const studentMajor = req.body.major;
 
     // Code Smell 2: Duplicate Validation
-    if (studentName === "") {
-        return res.send("Nama kosong");
-    }
-
-    if (studentMajor === "") {
-        return res.send("Jurusan kosong");
+    if (!validateStudent(studentName, studentMajor)) {
+        return res.send("Data tidak valid");
     }
 
     // Code Smell 3: Long Method
