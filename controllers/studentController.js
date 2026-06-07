@@ -12,6 +12,12 @@ function validateStudent(name, major) {
     return name && major;
 }
 
+function findStudentById(id) {
+    return students.find(
+        student => student.id == id
+    );
+}
+
 exports.getAllStudents = (req, res) => {
     res.render("index", { students });
 };
@@ -41,16 +47,18 @@ exports.addStudent = (req, res) => {
 };
 
 exports.showEditForm = (req, res) => {
-    const student = students.find(
-        s => s.id == req.params.id
+
+    const student = findStudentById(
+        req.params.id
     );
 
     res.render("edit", { student });
 };
 
 exports.updateStudent = (req, res) => {
-    let student = students.find(
-        s => s.id == req.params.id
+
+    const student = findStudentById(
+        req.params.id
     );
 
     if (student) {
